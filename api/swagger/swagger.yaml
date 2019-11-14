@@ -1,0 +1,152 @@
+---
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: Product API Documentation
+host: localhost:10010
+basePath: "/"
+schemes:
+- http
+- https
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: authorization
+    in: header
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  
+  "/api/login":
+    x-swagger-router-controller: login
+    post:
+      description: Insert new data Login
+      parameters:
+      - name: Login
+        description: Login will be inserted
+        in: body
+        required: true
+        schema:
+          "$ref": "#/definitions/LoginNoId"
+      responses:
+        '200':
+          description: Success
+          schema:
+            "$ref": "#/definitions/LoginResponse"
+        default:
+          description: Error
+          schema:
+            "$ref": "#/definitions/GeneralErrorResponse"
+  "/api/jsonpatch":
+    x-swagger-router-controller: jsonpatch
+    patch:
+     
+      security:
+        - Bearer: []
+      description: partial update 
+      parameters:
+      - name: Patch
+        description: partial update
+        in: body
+        required: true
+        schema:
+          "$ref": "#/definitions/patchNoId"
+      responses:
+        '200':
+          description: Success
+          schema:
+            "$ref": "#/definitions/JsonPatchResponse"
+        default:
+          description: Error
+          schema:
+            "$ref": "#/definitions/GeneralErrorResponse"
+ 
+  "/api/thumb":
+    x-swagger-router-controller: thumbnail
+    get:
+      security:
+        - Bearer: []
+      description: Returns thumbnail by id
+      parameters:
+      - name: src
+        description: src of image will be select
+        type: string
+        in: query
+        required: true
+      - name: w
+        description: width of image will be select
+        type: number
+        in: query
+        required: true
+      - name: h
+        description: height of image will be select
+        type: number
+        in: query
+        required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            "$ref": "#/definitions/ThumnailResponse"
+        default:
+          description: Error
+          schema:
+            "$ref": "#/definitions/GeneralErrorResponse"
+  
+  "/swagger":
+    x-swagger-pipe: swagger_raw
+definitions:
+  
+  LoginNoId:
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  patchNoId:
+    properties:
+      jsonObj:
+        type: string
+      jsonPatch:
+        type: string
+  LoginResponse:
+    required:
+    - result
+    - user
+    properties:
+      result:
+        type: boolean
+        default: true
+      user:
+        type: object
+        items:
+          "$ref": "#/definitions/LoginResponse"
+ 
+  ThumnailResponse:
+    required:
+    - resopnse
+    properties:
+      resopnse:
+        type: object
+        items:
+          "$ref": "#/definitions/ThumnailResponse"
+  JsonPatchResponse:
+    required:
+    - resopnse
+    properties:
+      resopnse:
+        type: object
+        items:
+          "$ref": "#/definitions/JsonPatchResponse"
+  GeneralErrorResponse:
+    required:
+    - result
+    - errorDesc
+    properties:
+      result:
+        type: boolean
+        default: false
+      errorDesc:
+        type: string

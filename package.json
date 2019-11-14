@@ -1,0 +1,37 @@
+{
+  "name": "node",
+  "version": "0.0.1",
+  "private": true,
+  "description": "NodeJS Project",
+  "keywords": [],
+  "author": "Satish Ameda",
+  "license": "",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "cookie-parser": "~1.4.3",
+    "express": "^4.12.3",
+    "gm": "^1.23.1",
+    "jade": "~1.11.0",
+    "json-patch": "^0.7.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.15.0",
+    "mongoose": "~4.7.0",
+    "prettier": "^1.19.1",
+    "swagger-express-mw": "^0.7.0",
+    "swagger-tools": "^0.10.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-strongloop": "^2.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "should": "^11.1.1",
+    "supertest": "^2.0.1"
+  },
+  "scripts": {
+    "eslint": "./node_modules/.bin/eslint api --fix",
+    "start": "swagger project start",
+    "test": "swagger project test"
+  }
+}
