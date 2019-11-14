@@ -20,15 +20,20 @@ npm install -g swagger
   npm install
 </pre>
 
-- npm start
+Start the Project 
 <pre>
+ npm start
+</pre>
+Run the Linting
+
+<pre>
+ npm eslint
+</pre>
+Run the test-cases
+<pre>
+ npm test
 </pre>
 
-- npm eslint
-<pre>
-</pre>
-
-- npm test
 <pre>
 swagger project start
 </pre>
